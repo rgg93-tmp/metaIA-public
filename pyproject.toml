@@ -1,0 +1,34 @@
+[project]
+name = "chat"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+dependencies = [
+    "azure-keyvault>=4.2.0",
+    "azure-monitor-opentelemetry>=1.6.5",
+    "gradio>=5.16.1",
+    "gradio-pdf>=0.0.22",
+    "httpx==0.25.0",
+    "python-dotenv>=1.0.1",
+    "azure-ai-documentintelligence==1.0.0b4",
+    "azure-identity==1.17.1",
+    "azure-search-documents==11.4.0",
+    "tiktoken==0.5.2",
+    "openai==1.55.3",
+    "tenacity>=8.4.1",
+    "autogen-core==0.4.8.1",
+    "autogen-ext==0.4.8.1",
+    "autogen-agentchat==0.4.8.1",
+    "msal==1.27.0",
+    "uvicorn==0.34.0",
+    "fastapi==0.115.11",
+    "msal==1.27.0",
+    "itsdangerous==2.2.0",
+    "langfuse>=2.60.5",
+    "openlit==1.33.21",
+    "mlflow==3.0.0rc3",
+    "mlflow-skinny==3.0.0rc3",
+    "pyautogen>=0.5.3",
+    "ydata-profiling==4.16.1",
+    "setuptools"
+]

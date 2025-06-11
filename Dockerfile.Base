@@ -1,0 +1,39 @@
+FROM python:3.10-slim
+
+# Set the working directory
+WORKDIR /usr/api_py
+
+ARG PIP_EXTRA_INDEX_URL
+
+ENV PIP_EXTRA_INDEX_URL="$PIP_EXTRA_INDEX_URL"
+RUN echo $PIP_EXTRA_INDEX_URL
+
+# Install necessary system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-transport-https \
+    gnupg \
+    build-essential \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# The installer requires curl (and certificates) to download the release archive
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
+
+# Download the latest installer
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
+
+# Run the installer then remove it
+RUN sh /uv-installer.sh && rm /uv-installer.sh
+
+# Ensure the installed binary is on the `PATH`
+ENV PATH="/root/.local/bin/:$PATH"
+
+# Install Python dependencies
+COPY pyproject.toml .
+COPY uv.lock .
+RUN uv venv --python 3.10
+RUN uv sync --prerelease=allow --frozen
+
+# Clean up unnecessary packages
+RUN apt-get purge -y build-essential && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*

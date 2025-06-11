@@ -1,0 +1,21 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+# Set the working directory
+WORKDIR /usr/api_py
+
+# Copy the application code
+COPY ./src ./src
+
+# Set permissions
+RUN chmod -R 777 /usr/api_py
+
+# Expose port
+EXPOSE 5000
+
+RUN ls -lah /usr/api_py/.venv/bin
+
+ENV PATH="/usr/api_py/.venv/bin:$PATH"
+
+# Run the server
+ENTRYPOINT ["python", "/usr/api_py/src/app.py"]
