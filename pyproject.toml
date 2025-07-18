@@ -28,7 +28,7 @@ dependencies = [
     "openlit==1.33.21",
     "mlflow==3.0.0rc3",
     "mlflow-skinny==3.0.0rc3",
-    "pyautogen>=0.5.3",
+    "ag2>=0.5.3",
     "ydata-profiling==4.16.1",
     "setuptools"
 ]
